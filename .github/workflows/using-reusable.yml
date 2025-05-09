@@ -5,3 +5,9 @@ jobs:
     uses: ./.github/workflows/reusable.yml
     with:
       message: 'Hello from reusable workflow!'
+  probe-result:
+    needs: call-reusable
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check reusable workflow result
+        run: echo "Reusable workflow result ${{ needs.call-reusable.outputs.result}}"

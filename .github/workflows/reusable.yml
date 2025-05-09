@@ -7,9 +7,18 @@ on:
         required: false
         type: string
         default: 'Hello, World!'
+    outputs:
+      result:
+        description: 'Result of the deployment'
+        value: ${{ jobs.deploy.outputs.result }}
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    outputs:
+      result: ${{ steps.outcome.outputs.result }}
     steps:
       - name: Deploy
         run: echo "${{ inputs.message}}"
+      - name: Output deployment result
+        id: outcome
+        run: echo "result=success" >> $GITHUB_OUTPUT
