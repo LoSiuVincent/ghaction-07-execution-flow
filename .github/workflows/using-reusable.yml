@@ -3,3 +3,5 @@ on: push
 jobs:
   call-reusable:
     uses: ./.github/workflows/reusable.yml
+    with:
+      message: 'Hello from reusable workflow!'
